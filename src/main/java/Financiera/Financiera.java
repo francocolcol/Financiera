@@ -24,18 +24,19 @@ public class Financiera {
         new VentanaLogin().setVisible(true);
     }
     
-    public static void ObtenerEstado() {
+    public static org.datacontract.schemas._2004._07.sge_service_contracts.ResultadoEstadoCliente CantidadDeCreditos(int dniIn) {
         try { // Call Web Service Operation
             org.tempuri.ServicioPublicoCredito service = new org.tempuri.ServicioPublicoCredito();
             org.tempuri.IServicioPublicoCredito port = service.getSGEBusService();
             // TODO initialize WS operation arguments here
             java.lang.String codigoFinanciera = "";
-            java.lang.Integer dni = Integer.valueOf(33000000);
+            java.lang.Integer dni = Integer.valueOf(dniIn);
             // TODO process result here
             org.datacontract.schemas._2004._07.sge_service_contracts.ResultadoEstadoCliente result = port.obtenerEstadoCliente(codigoFinanciera, dni);
             System.out.println("Result = " + result);
+            return result;
         } catch (Exception ex) {
-            System.err.println("eia");
+            return null;
         }
     }
     
