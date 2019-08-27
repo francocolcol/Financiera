@@ -36,6 +36,15 @@ public class VentanaNuevoCredito extends javax.swing.JFrame {
         textCuotas = new javax.swing.JTextField();
         lblTotal = new javax.swing.JLabel();
         lblCuota = new javax.swing.JLabel();
+        jLabel1 = new javax.swing.JLabel();
+        jLabel2 = new javax.swing.JLabel();
+        jLabel3 = new javax.swing.JLabel();
+        jLabel4 = new javax.swing.JLabel();
+        adelantarCuota = new javax.swing.JCheckBox();
+        jButton2 = new javax.swing.JButton();
+        lblgasto = new javax.swing.JLabel();
+        lblgastoper = new javax.swing.JLabel();
+        lblgastotot = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         addWindowListener(new java.awt.event.WindowAdapter() {
@@ -51,23 +60,62 @@ public class VentanaNuevoCredito extends javax.swing.JFrame {
             }
         });
 
-        textMonto.setText("Monto");
+        textMonto.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                textMontoActionPerformed(evt);
+            }
+        });
         textMonto.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyReleased(java.awt.event.KeyEvent evt) {
                 textMontoKeyReleased(evt);
             }
         });
 
-        textCuotas.setText("cuotas");
+        textCuotas.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                textCuotasActionPerformed(evt);
+            }
+        });
         textCuotas.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyReleased(java.awt.event.KeyEvent evt) {
                 textCuotasKeyReleased(evt);
             }
         });
 
+        lblTotal.setFont(new java.awt.Font("Tahoma", 1, 13)); // NOI18N
         lblTotal.setText("Total a pagar: ");
 
+        lblCuota.setFont(new java.awt.Font("Tahoma", 1, 13)); // NOI18N
         lblCuota.setText("Precio de cada cuota:");
+
+        jLabel1.setText("Ingrese el monto a solicitar (de $1.000 a $100.000):");
+
+        jLabel2.setText("Ingrese la cantidad de cuotas:");
+
+        jLabel3.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        jLabel3.setText("Porcentaje de intrerés: ");
+
+        jLabel4.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        jLabel4.setText("%");
+
+        adelantarCuota.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        adelantarCuota.setText("Adelantar cuota");
+        adelantarCuota.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                adelantarCuotaActionPerformed(evt);
+            }
+        });
+
+        jButton2.setText("Aceptar");
+
+        lblgasto.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        lblgasto.setText("Gastos administrativos:");
+
+        lblgastoper.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        lblgastoper.setText("%");
+
+        lblgastotot.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        lblgastotot.setText("$");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -76,32 +124,73 @@ public class VentanaNuevoCredito extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addGap(0, 372, Short.MAX_VALUE)
-                        .addComponent(jButton1))
                     .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(lblTotal)
-                            .addComponent(lblCuota)
-                            .addComponent(textCuotas, javax.swing.GroupLayout.DEFAULT_SIZE, 267, Short.MAX_VALUE)
-                            .addComponent(textMonto))
-                        .addGap(0, 0, Short.MAX_VALUE)))
-                .addContainerGap())
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel1)
+                            .addGroup(layout.createSequentialGroup()
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                    .addComponent(textCuotas, javax.swing.GroupLayout.DEFAULT_SIZE, 358, Short.MAX_VALUE)
+                                    .addComponent(textMonto)
+                                    .addComponent(jLabel2)
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                            .addComponent(lblgasto)
+                                            .addComponent(jLabel3)
+                                            .addComponent(adelantarCuota))
+                                        .addGap(81, 81, 81)
+                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                                .addComponent(lblgastotot)
+                                                .addComponent(lblgastoper))
+                                            .addComponent(jLabel4))))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(lblCuota)
+                                    .addComponent(lblTotal))))
+                        .addContainerGap(118, Short.MAX_VALUE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(0, 0, Short.MAX_VALUE)
+                        .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 86, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addComponent(jButton1)
+                        .addGap(27, 27, 27))))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addContainerGap()
+                .addComponent(jLabel1)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(textMonto, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(33, 33, 33)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jLabel2)
+                .addGap(12, 12, 12)
                 .addComponent(textCuotas, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(36, 36, 36)
-                .addComponent(lblTotal)
-                .addGap(37, 37, 37)
-                .addComponent(lblCuota)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 109, Short.MAX_VALUE)
-                .addComponent(jButton1)
-                .addContainerGap())
+                .addGap(18, 18, 18)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(jLabel3)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 24, Short.MAX_VALUE)
+                        .addComponent(adelantarCuota)
+                        .addGap(36, 36, 36)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(lblCuota)
+                                .addGap(18, 18, 18)
+                                .addComponent(lblTotal))
+                            .addComponent(lblgasto))
+                        .addGap(47, 47, 47))
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(jLabel4)
+                        .addGap(85, 85, 85)
+                        .addComponent(lblgastoper)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(lblgastotot)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jButton1)
+                    .addComponent(jButton2))
+                .addGap(26, 26, 26))
         );
 
         pack();
@@ -128,13 +217,56 @@ public class VentanaNuevoCredito extends javax.swing.JFrame {
         lblCuota.setText("El precio de cada cuota es: $" + (credito.getTotal() / Integer.parseInt(textCuotas.getText())));
     }//GEN-LAST:event_textCuotasKeyReleased
 
+    private void textMontoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_textMontoActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_textMontoActionPerformed
+
+    private void textCuotasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_textCuotasActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_textCuotasActionPerformed
+
+    private void adelantarCuotaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_adelantarCuotaActionPerformed
+        if(adelantarCuota.isSelected())
+        {
+            lblgasto.setVisible(false);
+            lblgastoper.setVisible(false);
+            lblgastotot.setVisible(false);
+        }
+        else{
+            lblgasto.setVisible(true);
+            lblgastoper.setVisible(true);
+            lblgastotot.setVisible(true);
+        }
+    }//GEN-LAST:event_adelantarCuotaActionPerformed
+
     /**
      * @param args the command line arguments
      */
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JCheckBox adelantarCuota;
     private javax.swing.JButton jButton1;
+    private javax.swing.JButton jButton2;
+    private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel10;
+    private javax.swing.JLabel jLabel11;
+    private javax.swing.JLabel jLabel12;
+    private javax.swing.JLabel jLabel13;
+    private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel4;
+    private javax.swing.JLabel jLabel5;
+    private javax.swing.JLabel jLabel6;
+    private javax.swing.JLabel jLabel7;
+    private javax.swing.JLabel jLabel8;
+    private javax.swing.JLabel jLabel9;
     private javax.swing.JLabel lblCuota;
     private javax.swing.JLabel lblTotal;
+    private javax.swing.JLabel lblgasto;
+    private javax.swing.JLabel lblgastoper;
+    private javax.swing.JLabel lblgastotot;
+    private javax.swing.JPanel panelGastos;
+    private javax.swing.JPanel panelGastos1;
+    private javax.swing.JPanel panelGastos2;
     private javax.swing.JTextField textCuotas;
     private javax.swing.JTextField textMonto;
     // End of variables declaration//GEN-END:variables
