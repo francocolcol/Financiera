@@ -5,11 +5,15 @@
  */
 package vista;
 
+import dominio.Credito;
+
 /**
  *
  * @author alech
  */
 public class VentanaNuevoCredito extends javax.swing.JFrame {
+
+    private Credito credito = new Credito();
 
     /**
      * Creates new form VentanaNuevoCredito
@@ -28,6 +32,10 @@ public class VentanaNuevoCredito extends javax.swing.JFrame {
     private void initComponents() {
 
         jButton1 = new javax.swing.JButton();
+        textMonto = new javax.swing.JTextField();
+        textCuotas = new javax.swing.JTextField();
+        lblTotal = new javax.swing.JLabel();
+        lblCuota = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         addWindowListener(new java.awt.event.WindowAdapter() {
@@ -43,19 +51,55 @@ public class VentanaNuevoCredito extends javax.swing.JFrame {
             }
         });
 
+        textMonto.setText("Monto");
+        textMonto.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                textMontoKeyReleased(evt);
+            }
+        });
+
+        textCuotas.setText("cuotas");
+        textCuotas.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                textCuotasKeyReleased(evt);
+            }
+        });
+
+        lblTotal.setText("Total a pagar: ");
+
+        lblCuota.setText("Precio de cada cuota:");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(384, Short.MAX_VALUE)
-                .addComponent(jButton1)
+            .addGroup(layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addGap(0, 372, Short.MAX_VALUE)
+                        .addComponent(jButton1))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(lblTotal)
+                            .addComponent(lblCuota)
+                            .addComponent(textCuotas, javax.swing.GroupLayout.DEFAULT_SIZE, 267, Short.MAX_VALUE)
+                            .addComponent(textMonto))
+                        .addGap(0, 0, Short.MAX_VALUE)))
                 .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(304, Short.MAX_VALUE)
+                .addContainerGap()
+                .addComponent(textMonto, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(33, 33, 33)
+                .addComponent(textCuotas, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(36, 36, 36)
+                .addComponent(lblTotal)
+                .addGap(37, 37, 37)
+                .addComponent(lblCuota)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 109, Short.MAX_VALUE)
                 .addComponent(jButton1)
                 .addContainerGap())
         );
@@ -73,10 +117,25 @@ public class VentanaNuevoCredito extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_formWindowClosed
 
+    private void textMontoKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_textMontoKeyReleased
+        if (1000 <= Integer.parseInt(textMonto.getText()) && Integer.parseInt(textMonto.getText()) <= 100000) {
+            credito.setMontosolicitado(Integer.parseInt(textMonto.getText()));
+            lblTotal.setText("Total a pagar: $" + credito.getTotal());
+        }
+    }//GEN-LAST:event_textMontoKeyReleased
+
+    private void textCuotasKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_textCuotasKeyReleased
+        lblCuota.setText("El precio de cada cuota es: $" + (credito.getTotal() / Integer.parseInt(textCuotas.getText())));
+    }//GEN-LAST:event_textCuotasKeyReleased
+
     /**
      * @param args the command line arguments
      */
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButton1;
+    private javax.swing.JLabel lblCuota;
+    private javax.swing.JLabel lblTotal;
+    private javax.swing.JTextField textCuotas;
+    private javax.swing.JTextField textMonto;
     // End of variables declaration//GEN-END:variables
 }

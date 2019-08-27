@@ -29,13 +29,14 @@ public class Financiera {
             org.tempuri.ServicioPublicoCredito service = new org.tempuri.ServicioPublicoCredito();
             org.tempuri.IServicioPublicoCredito port = service.getSGEBusService();
             // TODO initialize WS operation arguments here
-            java.lang.String codigoFinanciera = "";
+            java.lang.String codigoFinanciera = "39dc848b-b500-4e7e-b5d4-980c3a3ca9eb";
             java.lang.Integer dni = Integer.valueOf(dniIn);
             // TODO process result here
             org.datacontract.schemas._2004._07.sge_service_contracts.ResultadoEstadoCliente result = port.obtenerEstadoCliente(codigoFinanciera, dni);
-            System.out.println("Result = " + result);
+            System.out.println("Result = " + result.getCantidadCreditosActivos());
             return result;
         } catch (Exception ex) {
+            System.out.println("hola");
             return null;
         }
     }

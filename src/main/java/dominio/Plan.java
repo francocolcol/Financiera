@@ -10,5 +10,17 @@ package dominio;
  * @author alech
  */
 public class Plan {
+    private double interes;
+    private int cantcuotas;
+
+    public double getInteres() {
+        return interes;
+    }
+
+    public void setInteres(int interes) {
+        this.interes = interes;
+    }
+    
+    
     
 }
