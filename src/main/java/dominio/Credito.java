@@ -16,7 +16,7 @@ public class Credito {
     private double total, gastosadmin, montoaentregar;
     private int montosolicitado;
     private Plan plan = new Plan();
-    private String codigo = "142020";
+    private String IDcredito = "142020";
     private Cliente cliente = new Cliente();
 
     public Credito(int montosolicitado) {
@@ -38,12 +38,12 @@ public class Credito {
 
     
     
-    public String getCodigo() {
-        return codigo;
+    public String getIDcredito() {
+        return IDcredito;
     }
 
-    public void setCodigo(String codigo) {
-        this.codigo = codigo;
+    public void setIDcredito(String codigo) {
+        this.IDcredito = codigo;
     }
 
     public Cliente getCliente() {

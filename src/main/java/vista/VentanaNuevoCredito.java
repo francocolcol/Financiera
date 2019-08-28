@@ -278,7 +278,7 @@ public class VentanaNuevoCredito extends javax.swing.JFrame {
         for (int i = 0; i < credito.getPlan().getCantcuotas(); i++) {
             credito.addCuota(cuota);
         }
-        org.datacontract.schemas._2004._07.sge_service_contracts.ResultadoOperacion result = Financiera.Financiera.informarCreditoOtorgado(credito.getCliente().getDni(), credito.getCodigo(), credito.getMontosolicitado());
+        org.datacontract.schemas._2004._07.sge_service_contracts.ResultadoOperacion result = Financiera.Financiera.informarCreditoOtorgado(credito.getCliente().getDni(), credito.getIDcredito(), credito.getMontosolicitado());
         if (result.isOperacionValida()) {
             VentanaComprobante ventanacomp = new VentanaComprobante(credito);
             ventanacomp.setVisible(true);
