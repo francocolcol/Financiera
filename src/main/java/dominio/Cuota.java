@@ -12,14 +12,14 @@ import java.util.Date;
  * @author alech
  */
 public class Cuota {
-    private int precio;
+    private double precio;
     private Date vencimiento;
 
-    public int getPrecio() {
+    public double getPrecio() {
         return precio;
     }
 
-    public void setPrecio(int precio) {
+    public void setPrecio(double precio) {
         this.precio = precio;
     }
 

@@ -6,6 +6,7 @@
 package vista;
 
 import dominio.Credito;
+import dominio.Cuota;
 
 /**
  *
@@ -13,13 +14,16 @@ import dominio.Credito;
  */
 public class VentanaNuevoCredito extends javax.swing.JFrame {
 
-    private Credito credito = new Credito();
+    private Credito credito;
+    private Cuota cuota;
 
     /**
      * Creates new form VentanaNuevoCredito
      */
     public VentanaNuevoCredito() {
         initComponents();
+        credito = new Credito();
+        cuota = new Cuota();
     }
 
     /**
@@ -147,7 +151,7 @@ public class VentanaNuevoCredito extends javax.swing.JFrame {
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(lblCuota)
                                     .addComponent(lblTotal))))
-                        .addContainerGap(118, Short.MAX_VALUE))
+                        .addContainerGap(139, Short.MAX_VALUE))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(0, 0, Short.MAX_VALUE)
                         .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 86, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -209,12 +213,22 @@ public class VentanaNuevoCredito extends javax.swing.JFrame {
     private void textMontoKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_textMontoKeyReleased
         if (1000 <= Integer.parseInt(textMonto.getText()) && Integer.parseInt(textMonto.getText()) <= 100000) {
             credito.setMontosolicitado(Integer.parseInt(textMonto.getText()));
-            lblTotal.setText("Total a pagar: $" + credito.getTotal());
+            lblTotal.setText("Total a pagar: $" + credito.getTotalAdelantado());
+            if (!adelantarCuota.isSelected()) {
+                lblgastotot.setText("$" + credito.getGastosadmin());
+                lblgastoper.setText("%" + (int) (credito.getPlan().getGastosadmin() * 100));
+            }
         }
     }//GEN-LAST:event_textMontoKeyReleased
 
     private void textCuotasKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_textCuotasKeyReleased
-        lblCuota.setText("El precio de cada cuota es: $" + (credito.getTotal() / Integer.parseInt(textCuotas.getText())));
+        credito.getPlan().setCantcuotas(Integer.parseInt(textCuotas.getText()));
+        if (adelantarCuota.isSelected()) {
+            cuota.setPrecio(credito.getTotalAdelantado() / credito.getPlan().getCantcuotas());
+        } else {
+            cuota.setPrecio(credito.getTotalVencido() / credito.getPlan().getCantcuotas());
+        }
+        lblCuota.setText("El precio de cada cuota es: $" + String.format("%.2f", cuota.getPrecio()));
     }//GEN-LAST:event_textCuotasKeyReleased
 
     private void textMontoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_textMontoActionPerformed
@@ -226,13 +240,11 @@ public class VentanaNuevoCredito extends javax.swing.JFrame {
     }//GEN-LAST:event_textCuotasActionPerformed
 
     private void adelantarCuotaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_adelantarCuotaActionPerformed
-        if(adelantarCuota.isSelected())
-        {
+        if (adelantarCuota.isSelected()) {
             lblgasto.setVisible(false);
             lblgastoper.setVisible(false);
             lblgastotot.setVisible(false);
-        }
-        else{
+        } else {
             lblgasto.setVisible(true);
             lblgastoper.setVisible(true);
             lblgastotot.setVisible(true);
@@ -247,26 +259,14 @@ public class VentanaNuevoCredito extends javax.swing.JFrame {
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
     private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel10;
-    private javax.swing.JLabel jLabel11;
-    private javax.swing.JLabel jLabel12;
-    private javax.swing.JLabel jLabel13;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
-    private javax.swing.JLabel jLabel5;
-    private javax.swing.JLabel jLabel6;
-    private javax.swing.JLabel jLabel7;
-    private javax.swing.JLabel jLabel8;
-    private javax.swing.JLabel jLabel9;
     private javax.swing.JLabel lblCuota;
     private javax.swing.JLabel lblTotal;
     private javax.swing.JLabel lblgasto;
     private javax.swing.JLabel lblgastoper;
     private javax.swing.JLabel lblgastotot;
-    private javax.swing.JPanel panelGastos;
-    private javax.swing.JPanel panelGastos1;
-    private javax.swing.JPanel panelGastos2;
     private javax.swing.JTextField textCuotas;
     private javax.swing.JTextField textMonto;
     // End of variables declaration//GEN-END:variables

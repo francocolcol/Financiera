@@ -13,7 +13,7 @@ import java.util.ArrayList;
  */
 public class Credito {
     private  ArrayList<Cuota> cuotas = new ArrayList<>();
-    private double total;
+    private double total, gastosadmin;
     private int montosolicitado;
     private Plan plan = new Plan();
 
@@ -30,11 +30,16 @@ public class Credito {
         return cuotas;
     }
 
-    public double getTotal() {
+    public double getTotalAdelantado() {
         total = montosolicitado * (1 + plan.getInteres());
         return total;
     }
 
+    public double getTotalVencido() {
+        total = montosolicitado * (1 + plan.getInteres()) + getGastosadmin();
+        return total;
+    }
+    
     public int getMontosolicitado() {
         return montosolicitado;
     }
@@ -51,6 +56,26 @@ public class Credito {
         this.montosolicitado = montosolicitado;
     }
 
+    public Plan getPlan() {
+        return plan;
+    }
+
+    public void setPlan(Plan plan) {
+        this.plan = plan;
+    }
+    
+    public void addCuota(Cuota cuota){
+        cuotas.add(cuota);
+    }
+
+    public double getGastosadmin() {
+        gastosadmin = total * plan.getGastosadmin();
+        return gastosadmin;
+    }
+
+    public void setGastosadmin(double gastosadmin) {
+        this.gastosadmin = gastosadmin;
+    }
     
     
     
