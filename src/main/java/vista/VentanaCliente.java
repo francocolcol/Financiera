@@ -5,6 +5,9 @@
  */
 package vista;
 
+import dominio.Credito;
+import javax.swing.table.DefaultTableModel;
+
 /**
  *
  * @author alech
@@ -28,6 +31,15 @@ public class VentanaCliente extends javax.swing.JFrame {
     private void initComponents() {
 
         jButton1 = new javax.swing.JButton();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        tablaCliente = new javax.swing.JTable();
+        lblCliente = new javax.swing.JLabel();
+        lblDNI = new javax.swing.JLabel();
+        lblCreditos = new javax.swing.JLabel();
+        jLabel4 = new javax.swing.JLabel();
+        jLabel5 = new javax.swing.JLabel();
+        jLabel6 = new javax.swing.JLabel();
+        nuevoPago = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         addWindowListener(new java.awt.event.WindowAdapter() {
@@ -43,20 +55,79 @@ public class VentanaCliente extends javax.swing.JFrame {
             }
         });
 
+        tablaCliente.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null}
+            },
+            new String [] {
+                "ID credito", "Cantidad de cuotaas", "Interes", "Estado del credito", "Monto entregado", "Monto total"
+            }
+        ));
+        jScrollPane1.setViewportView(tablaCliente);
+
+        lblCliente.setText("Cliente:");
+
+        lblDNI.setText("DNI:");
+
+        lblCreditos.setText("Cantidad de creditos:");
+
+        nuevoPago.setText("Ingresar pago");
+        nuevoPago.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                nuevoPagoActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(305, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(nuevoPago)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(jButton1)
                 .addContainerGap())
+            .addComponent(jScrollPane1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 728, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addGap(28, 28, 28)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(lblCliente)
+                        .addGap(47, 47, 47)
+                        .addComponent(jLabel5))
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(lblDNI)
+                        .addGap(51, 51, 51)
+                        .addComponent(jLabel4)
+                        .addGap(180, 180, 180)
+                        .addComponent(lblCreditos)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(jLabel6)))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(262, Short.MAX_VALUE)
-                .addComponent(jButton1)
+                .addGap(20, 20, 20)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(lblCliente)
+                    .addComponent(jLabel5))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(lblDNI)
+                    .addComponent(lblCreditos)
+                    .addComponent(jLabel4)
+                    .addComponent(jLabel6))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 31, Short.MAX_VALUE)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jButton1)
+                    .addComponent(nuevoPago))
                 .addContainerGap())
         );
 
@@ -73,10 +144,37 @@ public class VentanaCliente extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_formWindowClosed
 
+    private void nuevoPagoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_nuevoPagoActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_nuevoPagoActionPerformed
+
     /**
      * @param args the command line arguments
      */
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButton1;
+    private javax.swing.JLabel jLabel4;
+    private javax.swing.JLabel jLabel5;
+    private javax.swing.JLabel jLabel6;
+    private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JLabel lblCliente;
+    private javax.swing.JLabel lblCreditos;
+    private javax.swing.JLabel lblDNI;
+    private javax.swing.JButton nuevoPago;
+    private javax.swing.JTable tablaCliente;
     // End of variables declaration//GEN-END:variables
+private void mostrarVenta(Credito c) {
+            DefaultTableModel mat = (DefaultTableModel) tablaCliente.getModel();
+            mat.addRow(new Object[]{
+                /*venta.getContadorProductos(),
+                p.getDescripcionProducto(),
+                p.getPrecio(),
+                p.revisarAgregado("Jamon"),
+                p.revisarAgregado("Queso"),
+                p.revisarAgregado("Huevo"),
+                p.calcularTotalPremiuns(),
+                p.getPrecio() +  p.calcularTotalPremiuns()*/
+            });
+            //lblTotal.setText("$ "+venta.calcularTotal());
+    }
 }
