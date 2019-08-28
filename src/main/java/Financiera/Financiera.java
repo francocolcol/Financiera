@@ -17,7 +17,7 @@ import vista.VentanaLogin;
 public class Financiera {
 
     public static ArrayList<Empleado> listaempleado = new ArrayList<Empleado>();
-    public static Empleado e1 = new Empleado("juan", "juan");
+    public static Empleado e1 = new Empleado(1233,"Juan Martín","juan", "juan");
     
     public static void main(String[] args) {
         listaempleado.add(e1);

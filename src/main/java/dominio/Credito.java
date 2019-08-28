@@ -13,16 +13,24 @@ import java.util.ArrayList;
  */
 public class Credito {
     private  ArrayList<Cuota> cuotas = new ArrayList<>();
-    private double total, gastosadmin, IDcredito;
+    private double total, gastosadmin;
     private int montosolicitado;
     private Plan plan = new Plan();
     private Cliente cliente = new Cliente();
+    private String IDcredito;
 
-    public double getIDcredito() {
+    public Credito(double total, double gastosadmin, String IDcredito, int montosolicitado, Cliente cliente, Plan plan) {
+        this.total = total;
+        this.gastosadmin = gastosadmin;
+        this.IDcredito = IDcredito;
+        this.montosolicitado = montosolicitado;
+    }
+
+    public String getIDcredito() {
         return IDcredito;
     }
 
-    public void setIDcredito(double IDcredito) {
+    public void setIDcredito(String IDcredito) {
         this.IDcredito = IDcredito;
     }
     

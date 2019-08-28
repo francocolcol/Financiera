@@ -5,7 +5,11 @@
  */
 package vista;
 
+import Financiera.Datos;
+import dominio.Cliente;
 import dominio.Credito;
+import java.util.ArrayList;
+import javax.swing.JTextField;
 import javax.swing.table.DefaultTableModel;
 
 /**
@@ -13,14 +17,20 @@ import javax.swing.table.DefaultTableModel;
  * @author alech
  */
 public class VentanaCliente extends javax.swing.JFrame {
-
+    
+    /**
+     *
+     */
+    private Datos datos = new Datos();
+    private String clienteDNI;
     /**
      * Creates new form VentanaCliente
      */
     public VentanaCliente() {
         initComponents();
+        lblCliente.setText("DNI: ");
     }
-
+    
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -35,11 +45,12 @@ public class VentanaCliente extends javax.swing.JFrame {
         tablaCliente = new javax.swing.JTable();
         lblCliente = new javax.swing.JLabel();
         lblDNI = new javax.swing.JLabel();
-        lblCreditos = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
         jLabel6 = new javax.swing.JLabel();
         nuevoPago = new javax.swing.JButton();
+        lblDomicilio = new javax.swing.JLabel();
+        lblTel = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         addWindowListener(new java.awt.event.WindowAdapter() {
@@ -48,7 +59,7 @@ public class VentanaCliente extends javax.swing.JFrame {
             }
         });
 
-        jButton1.setText("Cancelar");
+        jButton1.setText("Cerrar");
         jButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton1ActionPerformed(evt);
@@ -69,10 +80,13 @@ public class VentanaCliente extends javax.swing.JFrame {
         jScrollPane1.setViewportView(tablaCliente);
 
         lblCliente.setText("Cliente:");
+        lblCliente.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                lblClienteKeyReleased(evt);
+            }
+        });
 
         lblDNI.setText("DNI:");
-
-        lblCreditos.setText("Cantidad de creditos:");
 
         nuevoPago.setText("Ingresar pago");
         nuevoPago.addActionListener(new java.awt.event.ActionListener() {
@@ -80,6 +94,10 @@ public class VentanaCliente extends javax.swing.JFrame {
                 nuevoPagoActionPerformed(evt);
             }
         });
+
+        lblDomicilio.setText("Domiciolio:");
+
+        lblTel.setText("Telefono:");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -95,6 +113,8 @@ public class VentanaCliente extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addGap(28, 28, 28)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(lblTel)
+                    .addComponent(lblDomicilio)
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(lblCliente)
                         .addGap(47, 47, 47)
@@ -103,9 +123,7 @@ public class VentanaCliente extends javax.swing.JFrame {
                         .addComponent(lblDNI)
                         .addGap(51, 51, 51)
                         .addComponent(jLabel4)
-                        .addGap(180, 180, 180)
-                        .addComponent(lblCreditos)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addGap(295, 295, 295)
                         .addComponent(jLabel6)))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
@@ -119,12 +137,15 @@ public class VentanaCliente extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(lblDNI)
-                    .addComponent(lblCreditos)
                     .addComponent(jLabel4)
                     .addComponent(jLabel6))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 31, Short.MAX_VALUE)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(lblDomicilio)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(lblTel)
+                .addGap(43, 43, 43)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 359, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(34, 34, 34)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jButton1)
                     .addComponent(nuevoPago))
@@ -148,6 +169,10 @@ public class VentanaCliente extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_nuevoPagoActionPerformed
 
+    private void lblClienteKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_lblClienteKeyReleased
+
+    }//GEN-LAST:event_lblClienteKeyReleased
+
     /**
      * @param args the command line arguments
      */
@@ -158,12 +183,14 @@ public class VentanaCliente extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel6;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JLabel lblCliente;
-    private javax.swing.JLabel lblCreditos;
     private javax.swing.JLabel lblDNI;
+    private javax.swing.JLabel lblDomicilio;
+    private javax.swing.JLabel lblTel;
     private javax.swing.JButton nuevoPago;
     private javax.swing.JTable tablaCliente;
     // End of variables declaration//GEN-END:variables
-private void mostrarVenta(Credito c) {
+
+    private void mostrarVenta(Credito c) {
             DefaultTableModel mat = (DefaultTableModel) tablaCliente.getModel();
             mat.addRow(new Object[]{
                 /*venta.getContadorProductos(),
@@ -177,4 +204,20 @@ private void mostrarVenta(Credito c) {
             });
             //lblTotal.setText("$ "+venta.calcularTotal());
     }
+
+    public VentanaCliente(String clienteDNI) {
+        this.clienteDNI = clienteDNI;
+        initComponents();
+        lblDNI.setText("DNI de cliente: " + clienteDNI);
+        for(Cliente c : datos.getListaClientes()){
+            if (c.getDNI() == Integer.parseInt(clienteDNI)){
+                lblCliente.setText("Nombre Cliente: " + c.getNombre());
+                lblDomicilio.setText("Domicilio: " + c.getDomicilio());
+                lblTel.setText("Telefono: "+ c.getTelefono());
+            }
+        }
+    }
+
+
+
 }

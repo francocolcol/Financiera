@@ -98,6 +98,11 @@ public class VentanaNuevoCredito extends javax.swing.JFrame {
 
         jLabel3.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jLabel3.setText("Porcentaje de intrerés: ");
+        jLabel3.addContainerListener(new java.awt.event.ContainerAdapter() {
+            public void componentAdded(java.awt.event.ContainerEvent evt) {
+                jLabel3ComponentAdded(evt);
+            }
+        });
 
         jLabel4.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jLabel4.setText("%");
@@ -250,6 +255,10 @@ public class VentanaNuevoCredito extends javax.swing.JFrame {
             lblgastotot.setVisible(true);
         }
     }//GEN-LAST:event_adelantarCuotaActionPerformed
+
+    private void jLabel3ComponentAdded(java.awt.event.ContainerEvent evt) {//GEN-FIRST:event_jLabel3ComponentAdded
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jLabel3ComponentAdded
 
     /**
      * @param args the command line arguments

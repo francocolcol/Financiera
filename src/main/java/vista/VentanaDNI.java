@@ -6,6 +6,7 @@
 package vista;
 
 import javax.swing.JOptionPane;
+import javax.swing.JTextField;
 
 /**
  *
@@ -18,6 +19,7 @@ public class VentanaDNI extends javax.swing.JFrame {
      */
     public VentanaDNI() {
         initComponents();
+        
     }
 
     /**
@@ -49,6 +51,11 @@ public class VentanaDNI extends javax.swing.JFrame {
         });
 
         jButton1.setText("Estado de Créditos");
+        jButton1.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jButton1MouseClicked(evt);
+            }
+        });
         jButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton1ActionPerformed(evt);
@@ -139,14 +146,18 @@ public class VentanaDNI extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton3ActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        setVisible(false);
-        VentanaCliente ventcliente = new VentanaCliente();
+        VentanaCliente ventcliente = new VentanaCliente(textDNI.getText());
         ventcliente.setVisible(true);
+        setVisible(false);
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void formWindowClosed(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowClosed
         // TODO add your handling code here:
     }//GEN-LAST:event_formWindowClosed
+
+    private void jButton1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton1MouseClicked
+
+    }//GEN-LAST:event_jButton1MouseClicked
 
     /**
      * @param args the command line arguments
@@ -159,4 +170,6 @@ public class VentanaDNI extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel1;
     private javax.swing.JTextField textDNI;
     // End of variables declaration//GEN-END:variables
+    
+
 }
