@@ -49,6 +49,7 @@ public class VentanaNuevoCredito extends javax.swing.JFrame {
         lblgasto = new javax.swing.JLabel();
         lblgastoper = new javax.swing.JLabel();
         lblgastotot = new javax.swing.JLabel();
+        lblretirar = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         addWindowListener(new java.awt.event.WindowAdapter() {
@@ -111,6 +112,11 @@ public class VentanaNuevoCredito extends javax.swing.JFrame {
         });
 
         jButton2.setText("Aceptar");
+        jButton2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton2ActionPerformed(evt);
+            }
+        });
 
         lblgasto.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         lblgasto.setText("Gastos administrativos:");
@@ -121,6 +127,9 @@ public class VentanaNuevoCredito extends javax.swing.JFrame {
         lblgastotot.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         lblgastotot.setText("$");
 
+        lblretirar.setFont(new java.awt.Font("Tahoma", 1, 13)); // NOI18N
+        lblretirar.setText("Total a retirar:");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -128,36 +137,35 @@ public class VentanaNuevoCredito extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel1)
                     .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel1)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(textCuotas, javax.swing.GroupLayout.DEFAULT_SIZE, 358, Short.MAX_VALUE)
+                            .addComponent(textMonto)
+                            .addComponent(jLabel2)
                             .addGroup(layout.createSequentialGroup()
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                    .addComponent(textCuotas, javax.swing.GroupLayout.DEFAULT_SIZE, 358, Short.MAX_VALUE)
-                                    .addComponent(textMonto)
-                                    .addComponent(jLabel2)
-                                    .addGroup(layout.createSequentialGroup()
-                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                            .addComponent(lblgasto)
-                                            .addComponent(jLabel3)
-                                            .addComponent(adelantarCuota))
-                                        .addGap(81, 81, 81)
-                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                                .addComponent(lblgastotot)
-                                                .addComponent(lblgastoper))
-                                            .addComponent(jLabel4))))
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(lblCuota)
-                                    .addComponent(lblTotal))))
-                        .addContainerGap(139, Short.MAX_VALUE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(0, 0, Short.MAX_VALUE)
-                        .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 86, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
-                        .addComponent(jButton1)
-                        .addGap(27, 27, 27))))
+                                    .addComponent(lblgasto)
+                                    .addComponent(jLabel3)
+                                    .addComponent(adelantarCuota))
+                                .addGap(81, 81, 81)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                        .addComponent(lblgastotot)
+                                        .addComponent(lblgastoper))
+                                    .addComponent(jLabel4))))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(lblCuota)
+                            .addComponent(lblTotal)
+                            .addComponent(lblretirar))))
+                .addContainerGap(139, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 86, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(jButton1)
+                .addGap(28, 28, 28))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -183,18 +191,20 @@ public class VentanaNuevoCredito extends javax.swing.JFrame {
                                 .addGap(18, 18, 18)
                                 .addComponent(lblTotal))
                             .addComponent(lblgasto))
-                        .addGap(47, 47, 47))
+                        .addGap(18, 18, 18)
+                        .addComponent(lblretirar)
+                        .addGap(26, 26, 26)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jButton1)
+                            .addComponent(jButton2)))
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(jLabel4)
                         .addGap(85, 85, 85)
                         .addComponent(lblgastoper)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(lblgastotot)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jButton1)
-                    .addComponent(jButton2))
-                .addGap(26, 26, 26))
+                        .addGap(0, 94, Short.MAX_VALUE)))
+                .addContainerGap())
         );
 
         pack();
@@ -213,8 +223,10 @@ public class VentanaNuevoCredito extends javax.swing.JFrame {
     private void textMontoKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_textMontoKeyReleased
         if (1000 <= Integer.parseInt(textMonto.getText()) && Integer.parseInt(textMonto.getText()) <= 100000) {
             credito.setMontosolicitado(Integer.parseInt(textMonto.getText()));
-            lblTotal.setText("Total a pagar: $" + credito.getTotalAdelantado());
-            if (!adelantarCuota.isSelected()) {
+            if (adelantarCuota.isSelected()) {
+                lblTotal.setText("Total a pagar: $" + credito.getTotalAdelantado());
+            } else {
+                lblTotal.setText("Total a pagar: $" + credito.getTotalVencido());
                 lblgastotot.setText("$" + credito.getGastosadmin());
                 lblgastoper.setText("%" + (int) (credito.getPlan().getGastosadmin() * 100));
             }
@@ -225,8 +237,10 @@ public class VentanaNuevoCredito extends javax.swing.JFrame {
         credito.getPlan().setCantcuotas(Integer.parseInt(textCuotas.getText()));
         if (adelantarCuota.isSelected()) {
             cuota.setPrecio(credito.getTotalAdelantado() / credito.getPlan().getCantcuotas());
+            lblretirar.setText("Total a retirar: $" + String.format("%.2f", (credito.getMontosolicitado()- cuota.getPrecio())));
         } else {
             cuota.setPrecio(credito.getTotalVencido() / credito.getPlan().getCantcuotas());
+            lblretirar.setText("Total a retirar: $" + String.format("%.2f", (credito.getMontosolicitado() - credito.getGastosadmin())));
         }
         lblCuota.setText("El precio de cada cuota es: $" + String.format("%.2f", cuota.getPrecio()));
     }//GEN-LAST:event_textCuotasKeyReleased
@@ -244,12 +258,20 @@ public class VentanaNuevoCredito extends javax.swing.JFrame {
             lblgasto.setVisible(false);
             lblgastoper.setVisible(false);
             lblgastotot.setVisible(false);
+            lblTotal.setText("Total a pagar: $" + credito.getTotalAdelantado());
         } else {
             lblgasto.setVisible(true);
             lblgastoper.setVisible(true);
             lblgastotot.setVisible(true);
+            lblTotal.setText("Total a pagar: $" + credito.getTotalVencido());
         }
     }//GEN-LAST:event_adelantarCuotaActionPerformed
+
+    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+        for(int i = 0; i < credito.getPlan().getCantcuotas(); i++){
+            credito.addCuota(cuota);
+        }
+    }//GEN-LAST:event_jButton2ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -267,6 +289,7 @@ public class VentanaNuevoCredito extends javax.swing.JFrame {
     private javax.swing.JLabel lblgasto;
     private javax.swing.JLabel lblgastoper;
     private javax.swing.JLabel lblgastotot;
+    private javax.swing.JLabel lblretirar;
     private javax.swing.JTextField textCuotas;
     private javax.swing.JTextField textMonto;
     // End of variables declaration//GEN-END:variables

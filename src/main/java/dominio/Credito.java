@@ -69,7 +69,7 @@ public class Credito {
     }
 
     public double getGastosadmin() {
-        gastosadmin = total * plan.getGastosadmin();
+        gastosadmin = montosolicitado * plan.getGastosadmin();
         return gastosadmin;
     }
 
