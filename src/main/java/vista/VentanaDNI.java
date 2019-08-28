@@ -114,22 +114,26 @@ public class VentanaDNI extends javax.swing.JFrame {
     }//GEN-LAST:event_textDNIActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-        //org.datacontract.schemas._2004._07.sge_service_contracts.ResultadoEstadoCliente estadocliente = Financiera.Financiera.CantidadDeCreditos(Integer.parseInt(textDNI.getText()));
-        //System.out.println(" ");
-        /*if (estadocliente.isConsultaValida() == true) {
-            if (estadocliente.isTieneDeudas()) {
-                JOptionPane.showMessageDialog(rootPane, "El cliente no puede adquirir nuevos créditos debido ya que posee deudas.");
-            } else if (estadocliente.getCantidadCreditosActivos() > 3) {
-                JOptionPane.showMessageDialog(rootPane, "El cliente no puede acceder a más créditos.");
-            } else {*/
-                setVisible(false);
-                VentanaNuevoCredito nuevocred = new VentanaNuevoCredito();
-                nuevocred.setVisible(true);
-            //}
-       /*}
-        else {
-            JOptionPane.showMessageDialog(rootPane, "Hubo un error en la consulta, intente nuevamente.");
-        }*/
+        if (Integer.parseInt(textDNI.getText()) >= 33000000 && Integer.parseInt(textDNI.getText()) < 33001000) {
+            org.datacontract.schemas._2004._07.sge_service_contracts.ResultadoEstadoCliente estadocliente = Financiera.Financiera.CantidadDeCreditos(Integer.parseInt(textDNI.getText()));
+            System.out.println(" ");
+            if (estadocliente.isConsultaValida() == true) {
+                if (estadocliente.isTieneDeudas()) {
+                    JOptionPane.showMessageDialog(rootPane, "El cliente no puede adquirir nuevos créditos debido a que ya posee deudas.");
+                } else if (estadocliente.getCantidadCreditosActivos() > 3) {
+                    JOptionPane.showMessageDialog(rootPane, "El cliente no puede acceder a más créditos.");
+                } else {
+                    VentanaNuevoCredito nuevocred = new VentanaNuevoCredito();
+                    nuevocred.setVisible(true);
+                    nuevocred.getCredito().getCliente().setDni(Integer.parseInt(textDNI.getText()));
+                    setVisible(false);
+                }
+            } else {
+                JOptionPane.showMessageDialog(rootPane, "Hubo un error en la consulta, intente nuevamente.");
+            }
+        } else {
+            JOptionPane.showMessageDialog(rootPane, "El DNI debe ser entre 33000000 y 33000999");
+        }
     }//GEN-LAST:event_jButton2ActionPerformed
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed

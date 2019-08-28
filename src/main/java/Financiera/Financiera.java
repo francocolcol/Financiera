@@ -2,6 +2,7 @@ package Financiera;
 
 import dominio.Empleado;
 import java.util.ArrayList;
+import vista.VentanaComprobante;
 import vista.VentanaLogin;
 
 /*
@@ -24,13 +25,12 @@ public class Financiera {
         new VentanaLogin().setVisible(true);
     }
     
-    public static org.datacontract.schemas._2004._07.sge_service_contracts.ResultadoEstadoCliente CantidadDeCreditos(int dniIn) {
+    public static org.datacontract.schemas._2004._07.sge_service_contracts.ResultadoEstadoCliente CantidadDeCreditos(int dni) {
         try { // Call Web Service Operation
             org.tempuri.ServicioPublicoCredito service = new org.tempuri.ServicioPublicoCredito();
             org.tempuri.IServicioPublicoCredito port = service.getSGEBusService();
             // TODO initialize WS operation arguments here
-            java.lang.String codigoFinanciera = "39dc848b-b500-4e7e-b5d4-980c3a3ca9eb";
-            java.lang.Integer dni = Integer.valueOf(dniIn);
+            String codigoFinanciera = "39dc848b-b500-4e7e-b5d4-980c3a3ca9eb";
             // TODO process result here
             org.datacontract.schemas._2004._07.sge_service_contracts.ResultadoEstadoCliente result = port.obtenerEstadoCliente(codigoFinanciera, dni);
             System.out.println("Result = " + result.getCantidadCreditosActivos());
@@ -55,4 +55,23 @@ public class Financiera {
         
         return false;
     }
+    
+    public static org.datacontract.schemas._2004._07.sge_service_contracts.ResultadoOperacion informarCreditoOtorgado (int dni, String identificadorCredito, double montoOtorgado){
+        
+        try { // Call Web Service Operation
+            org.tempuri.ServicioPublicoCredito service = new org.tempuri.ServicioPublicoCredito();
+            org.tempuri.IServicioPublicoCredito port = service.getSGEBusService();
+            // TODO initialize WS operation arguments here
+            String codigoFinanciera = "39dc848b-b500-4e7e-b5d4-980c3a3ca9eb";
+            // TODO process result here
+            org.datacontract.schemas._2004._07.sge_service_contracts.ResultadoOperacion result = port.informarCreditoOtorgado(codigoFinanciera, dni, identificadorCredito, montoOtorgado);
+            System.out.println("Result = "+result);
+            return result;
+        } catch (Exception ex) {
+            // TODO handle custom exceptions here
+            return null;
+        }
+
+    }
+    
 }

@@ -12,6 +12,7 @@ package dominio;
 public class Plan {
     private double interes, gastosadminper = 0.02;
     private int cantcuotas;
+    private boolean esadelantado;
 
     public double getInteres() {
         return interes;
@@ -35,6 +36,22 @@ public class Plan {
 
     public void setCantcuotas(int cantcuotas) {
         this.cantcuotas = cantcuotas;
+    }
+
+    public double getGastosadminper() {
+        return gastosadminper;
+    }
+
+    public void setGastosadminper(double gastosadminper) {
+        this.gastosadminper = gastosadminper;
+    }
+
+    public boolean isEsadelantado() {
+        return esadelantado;
+    }
+
+    public void setEsadelantado(boolean esadelantado) {
+        this.esadelantado = esadelantado;
     }
     
     

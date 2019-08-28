@@ -7,6 +7,7 @@ package vista;
 
 import dominio.Credito;
 import dominio.Cuota;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -235,12 +236,13 @@ public class VentanaNuevoCredito extends javax.swing.JFrame {
 
     private void textCuotasKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_textCuotasKeyReleased
         credito.getPlan().setCantcuotas(Integer.parseInt(textCuotas.getText()));
+        cuota.setPrecio(credito.getTotalAdelantado() / credito.getPlan().getCantcuotas());
         if (adelantarCuota.isSelected()) {
-            cuota.setPrecio(credito.getTotalAdelantado() / credito.getPlan().getCantcuotas());
-            lblretirar.setText("Total a retirar: $" + String.format("%.2f", (credito.getMontosolicitado()- cuota.getPrecio())));
+            credito.setMontoaentregar(credito.getMontosolicitado() - cuota.getPrecio());
+            lblretirar.setText("Total a entregar: $" + String.format("%.2f", credito.getMontoaentregar()));
         } else {
-            cuota.setPrecio(credito.getTotalVencido() / credito.getPlan().getCantcuotas());
-            lblretirar.setText("Total a retirar: $" + String.format("%.2f", (credito.getMontosolicitado() - credito.getGastosadmin())));
+            credito.setMontoaentregar(credito.getMontosolicitado() - credito.getGastosadmin());
+            lblretirar.setText("Total a entregar: $" + String.format("%.2f", credito.getMontoaentregar()));
         }
         lblCuota.setText("El precio de cada cuota es: $" + String.format("%.2f", cuota.getPrecio()));
     }//GEN-LAST:event_textCuotasKeyReleased
@@ -268,8 +270,21 @@ public class VentanaNuevoCredito extends javax.swing.JFrame {
     }//GEN-LAST:event_adelantarCuotaActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-        for(int i = 0; i < credito.getPlan().getCantcuotas(); i++){
+        if (adelantarCuota.isSelected()) {
+            credito.getPlan().setEsadelantado(true);
+        } else {
+            credito.getPlan().setEsadelantado(false);
+        }
+        for (int i = 0; i < credito.getPlan().getCantcuotas(); i++) {
             credito.addCuota(cuota);
+        }
+        org.datacontract.schemas._2004._07.sge_service_contracts.ResultadoOperacion result = Financiera.Financiera.informarCreditoOtorgado(credito.getCliente().getDni(), credito.getCodigo(), credito.getMontosolicitado());
+        if (result.isOperacionValida()) {
+            VentanaComprobante ventanacomp = new VentanaComprobante(credito);
+            ventanacomp.setVisible(true);
+            setVisible(false);
+        } else {
+            JOptionPane.showMessageDialog(rootPane, result.getError());
         }
     }//GEN-LAST:event_jButton2ActionPerformed
 
@@ -293,4 +308,21 @@ public class VentanaNuevoCredito extends javax.swing.JFrame {
     private javax.swing.JTextField textCuotas;
     private javax.swing.JTextField textMonto;
     // End of variables declaration//GEN-END:variables
+
+    public Credito getCredito() {
+        return credito;
+    }
+
+    public void setCredito(Credito credito) {
+        this.credito = credito;
+    }
+
+    public Cuota getCuota() {
+        return cuota;
+    }
+
+    public void setCuota(Cuota cuota) {
+        this.cuota = cuota;
+    }
+
 }

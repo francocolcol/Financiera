@@ -13,9 +13,11 @@ import java.util.ArrayList;
  */
 public class Credito {
     private  ArrayList<Cuota> cuotas = new ArrayList<>();
-    private double total, gastosadmin;
+    private double total, gastosadmin, montoaentregar;
     private int montosolicitado;
     private Plan plan = new Plan();
+    private String codigo = "142020";
+    private Cliente cliente = new Cliente();
 
     public Credito(int montosolicitado) {
         this.total = montosolicitado * (1 + plan.getInteres());
@@ -25,7 +27,35 @@ public class Credito {
     public Credito() {
         
     }
+
+    public double getMontoaentregar() {
+        return montoaentregar;
+    }
+
+    public void setMontoaentregar(double montoaentregar) {
+        this.montoaentregar = montoaentregar;
+    }
+
+    
+    
+    public String getCodigo() {
+        return codigo;
+    }
+
+    public void setCodigo(String codigo) {
+        this.codigo = codigo;
+    }
+
+    public Cliente getCliente() {
+        return cliente;
+    }
+
+    public void setCliente(Cliente cliente) {
+        this.cliente = cliente;
+    }
  
+    
+    
     public ArrayList<Cuota> getCuotas() {
         return cuotas;
     }
@@ -37,6 +67,10 @@ public class Credito {
 
     public double getTotalVencido() {
         total = montosolicitado * (1 + plan.getInteres()) + getGastosadmin();
+        return total;
+    }
+
+    public double getTotal() {
         return total;
     }
     
